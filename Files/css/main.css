@@ -61,61 +61,73 @@ PARALLAX STUFF
 	content:url("../Logos/tg.png");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .logo-hippie {
 	content:url("../Logos/hippie.webp");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .logo-tgmc {
 	content:url("../Logos/tgmc.png");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .logo-bay {
 	content:url("../Logos/bay12.svg");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .logo-bee {
 	content:url("../Logos/bee.webp");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .logo-nsv {
 	content:url("../Logos/nsv.png");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .logo-skyrat {
 	content:url("../Logos/skyrat.png");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .logo-para {
 	content:url("../Logos/para.png");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .logo-tauceti {
 	content:url("../Logos/tauceti.png");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .logo-cit {
 	content:url("../Logos/Cit.png");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .logo-yog {
 	content:url("../Logos/yog.png");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .logo-cm {
 	content:url("../Logos/cm.png");
 	width: 32px;
 	height: 32px;
+	margin-right: 1em;
 }
 .ss13-blue {
 	background-color: #40628a !important;
