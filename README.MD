@@ -1,10 +1,9 @@
+
 # SS13WebMap
 
-This is a web-map for SS13 based off of LeafletJS
+> This is a web-map for SS13 based off of [LeafletJS](https://leafletjs.com/).
 
-If you want to submit a map, join the discord and ask
+## For contributors
 
-## Notice
-
-If you are submitting an update in css or javascript, please do minify them because we are now strictly using minified editions of those.
-VS Studio Plugin: <https://marketplace.visualstudio.com/items/hookyqr.minify>
+ 1. [I want to submit a map](./.github/MAP_REQUESTING.md)
+ 2. [Notice for contributors](./.github/NOTICE_FOR_CONTRIBUTORS.md)

@@ -1,4 +1,11 @@
-# How to Request Maps
+
+# MAP REQUESTING
+
+[Back](../README.md)
+
+---
+
+## How to Request Maps
 
 This document outlines the process for requesting maps on the webmap. I recommend reading it in its entirety before you make a request, as there is some preparation which can greatly speed up the process if you actually do it.
 
@@ -6,7 +13,7 @@ It is much preferred if your server maintainers/headcoder asks for the maps as t
 
 ---
 
-## Preparation
+### Preparation
 
 1. Ensure your codebase actually works with the webmap
 
