@@ -11,6 +11,7 @@
 	"files.trimFinalNewlines": true,
 	"files.trimTrailingWhitespace": true,
 	"gitlens.advanced.blame.customArguments": ["-w"],
+	"minify.minifyExistingOnSave": true,
 	"tgstationTestExplorer.project.resultsType": "json",
 	"workbench.editorAssociations": {},
     "files.exclude": {
