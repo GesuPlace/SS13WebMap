@@ -2,6 +2,7 @@
 	"recommendations": [
 		"andreabbondanza.ignoregit",
 		"arjun.swagger-viewer",
+		"donjayamanne.jquerysnippets",
 		"eamodio.gitlens",
 		"editorconfig.editorconfig",
 		"hookyqr.minify",
