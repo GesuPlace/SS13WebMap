@@ -1,9 +1,10 @@
 ---
-name: Code Issue
-about: This is the template for code issues
+name: Map Issue
+about: This is the template for map issues
 
 ---
 <!-- Write UNDER THE HEADLINES information addressed to this or that heading. You can leave your comments here, they will not be visible anyway. -->
+
 
 <b>Issue Description</b> <!-- below this line -->
 
