@@ -36,7 +36,7 @@
         $(window).load(function() {
             // Animate loader off screen
             $(".loader").fadeOut("slow");
-            initFTL("E", "tg");
+            initFTL("E", "fancy");
         });
     </script>
     <script>
@@ -52,9 +52,10 @@
 
 <body>
     <div class="loader"></div>
-    <div id="layer1"></div>
-    <div id="layer2"></div>
-    <div id="layer3"></div>
+    <div id="layers_params"></div>
+    <div id="layer1_landing"></div>
+    <div id="layer2_landing"></div>
+    <div id="layer3_landing"></div>
     <div id="webmap"></div>
     <script type="text/javascript">
         const bounds = [[0, 0], [-201, 300]];

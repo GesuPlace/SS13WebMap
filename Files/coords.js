@@ -1,19 +1,20 @@
 /* @preserve
  * JS Function helper for https://affectedarc07.github.io/SS13WebMap
- * MIT License (https://raw.githubusercontent.com/affectedarc07/SS13WebMap/master/LICENSE.MD)
+ * MIT License (https://raw.githubusercontent.com/affectedarc07/SS13WebMap/master/LICENSE.md)
  */
 
 /**
  * Generates imageoverlay for the webmap
- * @param {JSON} data 
+ * @param {JSON} data
  * @param {L.Map} webmap
  * @param {Array<Array>} bounds - The bound of an entire map, preferably the map dmm file "Y" size
  * @returns {JSON} - Returns map and pipenet **imageOverlay** , ex: `{"z1":imageOverlay}`
  */
 function bakeLayers(data, webmap, bounds){
+    console.info("Baking map imminent.")
     var mapjson = data.map;
     var pipenetjson = data.pipenet;
-    var return_dat = {"mapOpt":{},"pipenet":{}};
+    var return_dat = {"mapOpt": {}, "pipenet": {}};
 
     for(var thing in mapjson){
         var URL = mapjson[thing].url;
@@ -28,13 +29,13 @@ function bakeLayers(data, webmap, bounds){
         if(name){
             zname = name;
         }else if(mapjson.length > 1){
-            zname = "Deck "+zlevel;
+            zname = "Deck " + zlevel;
         }
         return_dat.mapOpt[zname] = image; // {mapOpt:{"z1":"imageOverlay"}}
     }
-    console.info("done baking map");
-    if(pipenetjson.length == 0){ //early return because pipenetjson length is 0 
-        console.info("no pipenet found, skipping pipenet baking");
+    console.info("Done baking map.");
+    if(pipenetjson.length == 0){ //early return because pipenetjson length is 0
+        console.info("No pipenet found, skipping pipenet baking.");
         return return_dat
     }
     for(var thing in pipenetjson){
@@ -46,11 +47,11 @@ function bakeLayers(data, webmap, bounds){
             continue
         }
         if(pipenetjson.length > 1){
-            zname = "Pipenet Z:"+zlevel;
+            zname = "Pipenet Z:" + zlevel;
         }
         return_dat.pipenet[zname] = image; // {pipeOpt:{"z1":"imageOverlay"}
     }
-    console.info("done baking pipenet")
+    console.info("Done baking pipenet.");
     return return_dat
 }
 /**
@@ -59,7 +60,7 @@ function bakeLayers(data, webmap, bounds){
  * @param {Array<Array>} bounds - The bound of an entire map, preferably the map dmm file "X,Y" size
  * @param {L.polygon} polygon  - Polygon, gets generated automaticaly
  */
-function attachListener(webmap, bounds, polygon=newpoly(webmap)){    
+function attachListener(webmap, bounds, polygon = newpoly(webmap)){
     webmap.on('mousemove', (e) => {
         var lat = Math.floor(e.latlng.lat);
         var lng = Math.floor(e.latlng.lng);
@@ -74,9 +75,9 @@ function attachListener(webmap, bounds, polygon=newpoly(webmap)){
     });
 
     let query = readquery();
-    console.info(`Parsing parameter cords, param:`,query);
+    console.info(`Parsing parameter cords, param:`, query);
     if(query && ("x" in query) && ("y" in query)){
-        let xy = ss132leaflet({"x":Number(query.x),"y":Number(query.y)}, bounds);
+        let xy = ss132leaflet({"x": Number(query.x), "y": Number(query.y)}, bounds);
         webmap.setView(L.latLng(xy.lat, xy.lng));
         if("zoom" in query){
             webmap.setZoom(Number(query.zoom));
@@ -87,7 +88,7 @@ function attachListener(webmap, bounds, polygon=newpoly(webmap)){
 }
 /**
  * Adds metadata on the map
- * @param {JSON} data - JSON Array data 
+ * @param {JSON} data - JSON Array data
  * @param {L.map} webmap - The leaflet L.map()
  */
 function addMetadata(data, webmap){
@@ -96,32 +97,40 @@ function addMetadata(data, webmap){
 /**
  * Initialize the paralax (not started while the page is loading)
  * @param {String} dir - The direction, can be:`'N','S','E','W'`
- * @param {String} mode - Mode of the thing, either TG or normal, if empty it assumes it as normal ftl
+ * @param {String} mode - Mode of the thing, either default or fancy, if empty it assumes it as normal ftl
  * @example
- * initFTL("N", "tg") 
+ * initFTL("N", "fancy")
  */
-function initFTL(dir="E", mode="norm", speedmodif = 0){
-    console.debug("FTL Translation imminent")
-    const layer1 = $("#layer1");
-    const layer2 = $("#layer2");
-    const layer3 = $("#layer3");
+function initFTL(dir = "E", mode = "default", speedmodif = 0){
+    console.debug("FTL Translation imminent.")
+    const layer1 = $("#layer1_landing");
+    const layer2 = $("#layer2_landing");
+    const layer3 = $("#layer3_landing");
 
-    const classes = {"tg":"TG_layer","norm":"layer"};
-    var speeds = {};
-    speeds.l1 = Math.max(80+speedmodif,1);
-    speeds.l2 = Math.max(40+speedmodif,1);
-    speeds.l3 = Math.max(20+speedmodif,1);
+    var speeds = {
+		l1 = 1,
+		l2 = 1,
+		l3 = 1,
+	};
+    speeds.l1 = Math.max(80 + speedmodif, 1);
+    speeds.l2 = Math.max(40 + speedmodif, 1);
+    speeds.l3 = Math.max(20 + speedmodif, 1);
 
-    layer1.addClass(classes[mode]+"1");
-    layer2.addClass(classes[mode]+"2");
-    layer3.addClass(classes[mode]+"3");
-    layer1.css("animation-name", "loop_"+dir);
-    layer2.css("animation-name", "loop_"+dir);
-    layer3.css("animation-name", "loop_"+dir);
-    layer1.animate({"animation-duration": speeds.l1+"s"}, 5000);
-    layer2.animate({"animation-duration": speeds.l2+"s"}, 5000);
-    layer3.animate({"animation-duration": speeds.l3+"s"}, 5000);
-    console.debug("FTL Translation successful");
+    const classes = {
+		"default": "default",
+		"fancy":   "fancy",
+	};
+    console.debug("FTL Translation mode: \"" + classes[mode] + "\"");
+    layer1.addClass("layers_params").addClass("layer1_" + classes[mode]);
+    layer2.addClass("layers_params").addClass("layer2_" + classes[mode]);
+    layer3.addClass("layers_params").addClass("layer3_" + classes[mode]);
+    layer1.css("animation-name", "loop_" + dir);
+    layer2.css("animation-name", "loop_" + dir);
+    layer3.css("animation-name", "loop_" + dir);
+    layer1.animate({"animation-duration": speeds.l1 + "s"}, 5000);
+    layer2.animate({"animation-duration": speeds.l2 + "s"}, 5000);
+    layer3.animate({"animation-duration": speeds.l3 + "s"}, 5000);
+    console.debug("FTL Translation successful.");
 }
 
 /* Helper Functions */
@@ -131,7 +140,7 @@ function initFTL(dir="E", mode="norm", speedmodif = 0){
  */
 function readquery(){
     var json_out = {};
-    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m,key,value)=>{
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value)=>{
         json_out[key] = value;
     });
     return json_out;
@@ -143,9 +152,25 @@ function readquery(){
  * @param {JSON} config - JSON Config
  * @returns {L.polygon} - Returns the polygon that got created
  */
-function newpoly(webmap, config={"fill": false, "color": '#40628a', "weight": 5}){
-    const c = ["Poly wanna cracker!", "Check the crystal, you chucklefucks!","Stop wasting precius bytes on the webmap Adri!!","Wire the solars, you lazy bums!","Stop breaking the webmap!!!","WHO TOOK THE DAMN HARDSUITS?","The console blares, GET https://www.googletagmanager.com/gtag/js?id=UA-115958323-1 net::ERR_BLOCKED_BY_CLIENT","CE, the clown ran \"rm -rf /\" on the NTNet station map server","OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE"];
-    console.warn("Poly "+["squawks","says","yells"][Math.floor(Math.random()*3)]+", "+c[Math.floor(Math.random()*c.length)]);
+function newpoly(webmap, config = {"fill": false, "color": '#40628a', "weight": 5}){
+    const c = [
+		"Poly wanna cracker!",
+		"Check the crystal, you chucklefucks!",
+		"Stop wasting precius bytes on the webmap Adri!!",
+		"Wire the solars, you lazy bums!",
+		"Stop breaking the webmap!!!",
+		"WHO TOOK THE DAMN HARDSUITS?",
+		"The console blares, GET https://www.googletagmanager.com/gtag/js?id=UA-115958323-1 net::ERR_BLOCKED_BY_CLIENT",
+		"CE, the clown ran \"rm -rf /\" on the NTNet station map server",
+		"OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE",
+	];
+    console.warn(
+		"Poly " +
+		["squawks", "says", "yells"][Math.floor(Math.random() * 3)] +
+		", \"" +
+		c[Math.floor(Math.random() * c.length)] +
+		"\""
+	);
     var polygon = L.polygon([], config).addTo(webmap);
     return polygon
 }
@@ -165,7 +190,7 @@ function leaflet2ss13(lat, lng, bounds){
 }
 /**
  * Exact opposite of leaflet2ss13
- * @param {JSON} coords 
+ * @param {JSON} coords
  * @param {Array<Array>} bounds - The bound of an entire map, preferably the map dmm file "Y" size
  * @returns {JSON} - returns lat and lng
  */
