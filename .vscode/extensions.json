@@ -5,6 +5,8 @@
 		"eamodio.gitlens",
 		"editorconfig.editorconfig",
 		"hookyqr.minify",
+		"jcbuisson.vue",
+		"octref.vetur",
 		"oderwat.indent-rainbow",
 		"redvanworkshop.explorer-exclude-vscode-extension",
 		"ritwickdey.liveserver",
