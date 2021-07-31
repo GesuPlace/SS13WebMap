@@ -48,12 +48,12 @@ Logos
 */
 .logo_params {
 	content: url("../Logos/_byond.png");
-	width: 32px;
-	height: 32px;
+	width: 64px;
+	height: 64px;
 	margin-right: 1em;
 }
 .logo-unknown {
-	padding-right: 32px;
+	padding-right: 64px;
 }
 .logo-bay     {content: url("../Logos/bay12.svg")}
 .logo-bee     {content: url("../Logos/bee.webp")}
