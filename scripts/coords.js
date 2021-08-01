@@ -11,7 +11,7 @@
  * @returns {JSON} - Returns map and pipenet **imageOverlay** , ex: `{"z1":imageOverlay}`
  */
 function bakeLayers(data, webmap, bounds){
-    console.info("Baking map imminent.")
+    console.info("Baking map: imminent")
     var mapjson = data.map;
     var pipenetjson = data.pipenet;
     var return_dat = {"mapOpt": {}, "pipenet": {}};
@@ -33,26 +33,28 @@ function bakeLayers(data, webmap, bounds){
         }
         return_dat.mapOpt[zname] = image; // {mapOpt:{"z1":"imageOverlay"}}
     }
-    console.info("Done baking map.");
+    console.info("Baking map: done");
     if(pipenetjson.length == 0){ //early return because pipenetjson length is 0
-        console.info("No pipenet found, skipping pipenet baking.");
+        console.warn("Baking pipenet: skipping\n	(reason: no pipenet found)");
         return return_dat
-    }
-    for(var thing in pipenetjson){
-        var URL = pipenetjson[thing].url;
-        var zlevel = pipenetjson[thing].z;
-        var image = L.imageOverlay(URL, bounds); //do not add pipelayers yet
-        var zname = "Pipenet";
-        if(URL == "" || URL == undefined){
-            continue
-        }
-        if(pipenetjson.length > 1){
-            zname = "Pipenet Z:" + zlevel;
-        }
-        return_dat.pipenet[zname] = image; // {pipeOpt:{"z1":"imageOverlay"}
-    }
-    console.info("Done baking pipenet.");
-    return return_dat
+    } else {
+		console.info("Baking pipenet: imminent")
+		for(var thing in pipenetjson) {
+			var URL = pipenetjson[thing].url;
+			var zlevel = pipenetjson[thing].z;
+			var image = L.imageOverlay(URL, bounds); //do not add pipelayers yet
+			var zname = "Pipenet";
+			if(URL == "" || URL == undefined){
+				continue
+			}
+			if(pipenetjson.length > 1){
+				zname = "Pipenet Z:" + zlevel;
+			}
+			return_dat.pipenet[zname] = image; // {pipeOpt:{"z1": "imageOverlay"}
+		}
+		console.info("Baking pipenet: done");
+		return return_dat
+	}
 }
 /**
  * Attatch webmap listiners
@@ -75,16 +77,18 @@ function attachListener(webmap, bounds, polygon = newpoly(webmap)){
     });
 
     let query = readquery();
-    console.info(`Parsing parameter cords, param:`, query);
+	console.info("Parsing parameter cords: imminent")
     if(query && ("x" in query) && ("y" in query)){
+		console.info(`Parsing parameter cords: `, query);
         let xy = ss132leaflet({"x": Number(query.x), "y": Number(query.y)}, bounds);
         webmap.setView(L.latLng(xy.lat, xy.lng));
         if("zoom" in query){
             webmap.setZoom(Number(query.zoom));
         }
     }else{
-        console.info(`it's blank...`);
+        console.warn("Parsing parameter cords: skipping\n	(reason: parameter cords is blank)");
     }
+	console.info("Parsing parameter cords: done");
 }
 /**
  * Adds metadata on the map

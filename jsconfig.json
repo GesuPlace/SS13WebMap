@@ -8,7 +8,7 @@
 		}
 	},
 	"include": [
-		"Files/**/*.vue",
-		"Files/**/*.js"
+		"scripts/**/*.vue",
+		"scripts/**/*.js"
 	]
 }

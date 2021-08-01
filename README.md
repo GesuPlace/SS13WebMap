@@ -2,7 +2,7 @@
 <p align="center">
 	<a href="https://affectedarc07.github.io/SS13WebMap/">
 		<img alt="SS13WebMap Logo"
-		src="./Files/images/webmap-logo.jpg"/>
+		src="./images/webmap-logo.jpg"/>
 	</a>
 	<h2 align="center">
 		SS13WebMap
