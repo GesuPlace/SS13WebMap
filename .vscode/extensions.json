@@ -1,0 +1,19 @@
+{
+	"recommendations": [
+		"andreabbondanza.ignoregit",
+		"arjun.swagger-viewer",
+		"donjayamanne.jquerysnippets",
+		"eamodio.gitlens",
+		"editorconfig.editorconfig",
+		"hookyqr.minify",
+		"jcbuisson.vue",
+		"octref.vetur",
+		"oderwat.indent-rainbow",
+		"redvanworkshop.explorer-exclude-vscode-extension",
+		"ritwickdey.liveserver",
+		"tht13.html-preview-vscode",
+		"usernamehw.errorlens",
+		"xshrim.txt-syntax",
+		"yzhang.markdown-all-in-one",
+	]
+}
