@@ -12,6 +12,26 @@ import './index.css';
  * https://codepen.io/gaearon/pen/oWWQNa?editors=0010
 */
 
+function calculateWinner(squares) {
+    const lines = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+        const [a, b, c] = lines[i];
+        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+            return squares[a];
+        }
+    }
+    return null;
+}
+
 //class Square extends React.Component {
 function Square(props) {
     return (
@@ -35,14 +55,19 @@ class Board extends React.Component {
     }
 
     handleClick(i) {
-        if (!this.state.squares[i]) { // preventing cells override
+        if (!this.state.squares[i]) { // ← preventing cells overwriting
             const squares = this.state.squares.slice();
-            //squares[i] = 'X';
+            if (calculateWinner(squares) || squares[i]) {
+                return;
+            }
             squares[i] = this.state.xIsNext ? 'X' : 'O';
             this.setState({
                 squares: squares,
                 xIsNext: !this.state.xIsNext,
             });
+        } else {
+            alert('Error:\nCell overwriting is not possible.');
+            return;
         }
     }
 
@@ -57,10 +82,15 @@ class Board extends React.Component {
     }
 
     render() {
-        //const status = 'Next player: X';
-        const status1 = 'Last player: ' + (this.state.xIsNext ? 'O' : 'X');
-        const status2 = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-
+        const winner = calculateWinner(this.state.squares);
+        let status1, status2;
+        if (winner) {
+            status1 = 'GAME OVER! Winner of this play: ' + (winner);
+            status2 = 'Refresh page to restart.';
+        } else {
+            status1 = 'Previous step: ' + (this.state.xIsNext ? 'O' : 'X');
+            status2 = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+        }
         return (
             <div>
             <div className="status">{status1}<br />{status2}</div>
