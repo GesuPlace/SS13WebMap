@@ -13,20 +13,14 @@ import './index.css';
 */
 
 class Square extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: null,
-        }
-    }
     render() {
         return (
             /*      className="square" onClick={function() { alert('click'); }}> */
             <button
-                className="square" onClick={
-                () => this.setState({value: 'X'})}
+                className="square"
+                onClick={() => this.props.onClick()}
             >
-                {this.state.value}
+                {this.props.value}
             </button>
         );
     }
@@ -38,6 +32,12 @@ class Board extends React.Component {
         this.state = {
             squares: Array(9).fill(null)
         };
+    }
+
+    handleClick(i) {
+        const squares = this.state.squares.slice();
+        squares[i] = 'X';
+        this.setState({squares: squares});
     }
 
     renderSquare(i) {
