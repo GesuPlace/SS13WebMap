@@ -12,32 +12,36 @@ import './index.css';
  * https://codepen.io/gaearon/pen/oWWQNa?editors=0010
 */
 
-class Square extends React.Component {
-    render() {
-        return (
-            /*      className="square" onClick={function() { alert('click'); }}> */
-            <button
-                className="square"
-                onClick={() => this.props.onClick()}
-            >
-                {this.props.value}
-            </button>
-        );
-    }
+//class Square extends React.Component {
+function Square(props) {
+    return (
+        /*      className="square" onClick={function() { alert('click'); }}> */
+        <button
+            className="square"
+            onClick={props.onClick}
+        >
+            {props.value}
+        </button>
+    );
 }
 
 class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            squares: Array(9).fill(null)
+            squares: Array(9).fill(null),
+            xIsNext: true,
         };
     }
 
     handleClick(i) {
         const squares = this.state.squares.slice();
-        squares[i] = 'X';
-        this.setState({squares: squares});
+        //squares[i] = 'X';
+        squares[i] = this.state.xIsNext ? 'X' : 'O';
+        this.setState({
+            squares: squares,
+            xIsNext: !this.state.xIsNext,
+        });
     }
 
     renderSquare(i) {
@@ -51,11 +55,13 @@ class Board extends React.Component {
     }
 
     render() {
-        const status = 'Next player: X';
+        //const status = 'Next player: X';
+        const status1 = 'Last player: ' + (this.state.xIsNext ? 'O' : 'X');
+        const status2 = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
         return (
             <div>
-            <div className="status">{status}</div>
+            <div className="status">{status1}<br />{status2}</div>
             <div className="board-row">
                 {this.renderSquare(0)}
                 {this.renderSquare(1)}
