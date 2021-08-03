@@ -35,13 +35,15 @@ class Board extends React.Component {
     }
 
     handleClick(i) {
-        const squares = this.state.squares.slice();
-        //squares[i] = 'X';
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
-        this.setState({
-            squares: squares,
-            xIsNext: !this.state.xIsNext,
-        });
+        if (!this.state.squares[i]) { // preventing cells override
+            const squares = this.state.squares.slice();
+            //squares[i] = 'X';
+            squares[i] = this.state.xIsNext ? 'X' : 'O';
+            this.setState({
+                squares: squares,
+                xIsNext: !this.state.xIsNext,
+            });
+        }
     }
 
     renderSquare(i) {
