@@ -34,7 +34,7 @@ export class webmapBuilds extends Component {
                         node="div"
                     >
                         <Button
-                            disabled
+                            href="./bay.html"
                             node="button"
                             small
                             style={{
