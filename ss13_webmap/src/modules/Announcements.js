@@ -18,6 +18,7 @@ export class webmapAnnouncements extends Component {
     render() {
         return (
             <Container>
+                <h3 style={{color: 'white'}}>Announcements</h3>
                 <Collapsible accordion>
                     <CollapsibleItem
                         expanded={false}
@@ -31,6 +32,7 @@ export class webmapAnnouncements extends Component {
                         }
                         icon={<Icon>whatshot</Icon>}
                         node="div"
+                        style={{color: 'red'}}
                     >
                         I do <b>NOT</b> actively track repositories and their map rotation. <br />
                         Getting a new map added or an old map removed is entirely on you or your playerbase to request.

@@ -1,5 +1,7 @@
+
 body {
   margin: 0;
+  background-image: url("./modules/layer1.png");
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +12,31 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+/**
+ * https://github.com/Dogfalo/materialize/blob/v1-dev/dist/css/materialize.css#L5844
+ * https://www.jquery-az.com/6-examples-materialize-collapsible-accordion/
+*/
+.collapsible {
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  margin: 0.5rem 0 1rem 0;
+}
+.collapsible-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  /* line-height: 1.75; */
+  /* padding: 1rem; */
+  background-color: #455a64;
+  border-bottom: 1px solid #ffa726;
+}
+.collapsible-body {
+  background-color: lightgray;
 }
